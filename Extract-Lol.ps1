@@ -185,9 +185,11 @@ $proc = Get-Process -Name LolClient
 if ($proc) {
     Write-Output "Waiting for dump to be written ..."
     $dumpfile = Out-Minidump -Process $proc -DumpFilePath $env:temp
+    #Start-Sleep -seconds 10
     Write-Output "Seeking through dump ..."
     Seek $dumpfile 100000000
     Remove-Item $dumpfile
+    [gc]::collect() #try to free up all that mem shizzle
 }
 }
 
