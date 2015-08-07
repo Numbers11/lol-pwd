@@ -194,6 +194,8 @@ if ($proc) {
     Seek $dumpfile 100000000
     Remove-Item $dumpfile
     [gc]::collect() #try to free up all that mem shizzle
+} else {
+    Write-Output "Could not find LolClient process, is it running?"
 }
 }
 
