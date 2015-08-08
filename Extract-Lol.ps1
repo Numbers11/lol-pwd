@@ -168,14 +168,17 @@ function Seek($inFile, [Int32] $bufSize){
 	    {
             $len = $Results.count
             for($i=0;$i-lt$len;$i++){
-                $match = $RawString.substring($Results[$i].Index - 600, 1200) #not sure about a good search range
+                $match = $RawString.substring($Results[$i].Index - 1200, 1200) #not sure about a good search range
                 Write-Output "Pattern $q found:"
                 $match -replace "[^\x20-\x7E]", "."
-                $Regex = [regex] '\x06\x1B'
+                $Regex = [regex] '\x06\x1B[ -~]{6,16}'
                 $re = $Regex.Matches($match)
                 Write-Output '-------------------------------'
-                Write-Output "Best guess: "
-                $match.Substring($re[0].Index, 16) -replace "[^\x20-\x7E]", ""
+                Write-Output "Best guesses: "
+                foreach($r in $re) {
+                    $r.Value  -replace "[^\x20-\x7E]", ""
+                }
+                #$match.Substring($re[0].Index, 16) -replace "[^\x20-\x7E]", ""
                 Write-Output `r
                 Write-Output `r
             }
