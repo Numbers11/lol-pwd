@@ -168,7 +168,7 @@ function Seek($inFile, [Int32] $bufSize){
 	    {
             $len = $Results.count
             for($i=0;$i-lt$len;$i++){
-                $match = $RawString.substring($Results[$i].Index - 1200, 1200) #not sure about a good search range
+                $match = $RawString.substring($Results[$i].Index - 2200, 2200) #not sure about a good search range
                 Write-Output "Pattern $q found:"
                 $match -replace "[^\x20-\x7E]", "."
                 $Regex = [regex] '\x06\x1B[ -~]{6,16}'
