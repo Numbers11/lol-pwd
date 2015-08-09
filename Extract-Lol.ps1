@@ -147,7 +147,7 @@ It won't work most likely
 PS C:\>Extract-Lol
 
 #>
-
+                        
 $patterns = ([regex] '\x6C\x6F\x6C\x63\x6C\x69\x65\x6E\x74\x2E\x6C\x6F\x6C\x2E\x72\x69\x6F\x74\x67\x61\x6D\x65\x73\x2E\x63\x6F\x6D',
              [regex] '\x74\x6F\x6B\x65\x6E\x11\x70\x61\x73\x73\x77\x6F\x72\x64\x1D\x61\x63\x63\x6F\x75\x6E\x74\x53\x75\x6D\x6D\x61')
 
@@ -168,7 +168,7 @@ function Seek($inFile, [Int32] $bufSize){
 	    {
             $len = $Results.count
             for($i=0;$i-lt$len;$i++){
-                $match = $RawString.substring($Results[$i].Index - 2200, 2200) #not sure about a good search range
+                $match = $RawString.substring($Results[$i].Index - 2200, 4200) #not sure about a good search range
                 Write-Output "Pattern $q found:"
                 $match -replace "[^\x20-\x7E]", "."
                 $Regex = [regex] '\x06\x1B[ -~]{6,16}'
